@@ -1,0 +1,47 @@
+package pt.uma.tpsi.ad.entities;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
+import pt.uma.tpsi.ad.game.Animator;
+
+public abstract class Brick {
+    private int posX, posY, points;
+    private Animator animator;
+    private Rectangle boundingBox;
+    private boolean collided;
+
+
+    public Brick(SpriteBatch batch, int posX, int posY, String texturePath) {
+        this.posX = posX;
+        this.posY = posY;
+        this.points = 100;
+        this.animator = new Animator(batch, texturePath, 1, 1);
+        this.collided = false;
+    }
+
+    public void create() {
+        animator.create();
+        boundingBox = new Rectangle(posX, posY, animator.getWidth(), animator.getHeight());
+    }
+
+    public void render() {
+        if (!collided) {
+            animator.render(posX, posY);
+        }
+    }
+
+
+
+    public Rectangle getBoundingBox() {
+        return boundingBox;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public abstract boolean onCollision();
+
+
+}
