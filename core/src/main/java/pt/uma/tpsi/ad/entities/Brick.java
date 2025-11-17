@@ -1,22 +1,23 @@
 package pt.uma.tpsi.ad.entities;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import pt.uma.tpsi.ad.game.Animator;
 
 public abstract class Brick {
-    private int posX, posY, points;
-    private Animator animator;
-    private Rectangle boundingBox;
-    private boolean collided;
+
+    protected int posX, posY;
+    protected Animator animator;
+    protected Rectangle boundingBox;
+    protected boolean collided;
+    protected int points;
 
 
-    public Brick(SpriteBatch batch, int posX, int posY, String texturePath) {
+    public Brick(SpriteBatch batch, int posX, int posY, String texturePath ) {
         this.posX = posX;
         this.posY = posY;
         this.points = 100;
-        this.animator = new Animator(batch, texturePath, 1, 1);
+        this.animator = new Animator(batch, texturePath, 2, 1);
         this.collided = false;
     }
 
@@ -28,6 +29,9 @@ public abstract class Brick {
     public void render() {
         if (!collided) {
             animator.render(posX, posY);
+        }
+        if (boundingBox != null) {
+            boundingBox.setPosition(posX, posY);
         }
     }
 
@@ -41,7 +45,10 @@ public abstract class Brick {
         return points;
     }
 
+    public boolean isCollided() {
+        return collided;
+    }
+
+
     public abstract boolean onCollision();
-
-
 }
