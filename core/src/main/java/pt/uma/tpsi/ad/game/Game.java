@@ -44,8 +44,6 @@ public class Game extends ApplicationAdapter {
 
     @Override
     public void render() {
-
-        // Render
         batch.begin();
         backgroundManagement.render();
         if (!gameOver && !gameWon) {
@@ -79,8 +77,8 @@ public class Game extends ApplicationAdapter {
         if (gameOver) {
             String message = "GAME OVER";
             layout.setText(font, message);
-            float x = (Gdx.graphics.getWidth() - layout.width) / 2f;
-            float y = (Gdx.graphics.getHeight() + layout.height) / 2f;
+            float x = (Gdx.graphics.getWidth() - layout.width) / 2;
+            float y = (Gdx.graphics.getHeight() + layout.height) / 2;
             font.draw(batch, message, x, y);
         } else if (gameWon && !brickGrid.isExplosionActive()) {
             String message = "YOU WON";

@@ -118,10 +118,10 @@ public class BrickGrid extends ArrayList<Brick> {
         Iterator<Brick> iterator = this.iterator();
         while (iterator.hasNext()) {
             Brick brick = iterator.next();
-            Rectangle bb = brick.getBoundingBox();
-            if (bb == null) continue;
+            Rectangle boundingBox = brick.getBoundingBox();
+            if (boundingBox == null) continue;
 
-            if (ballBox.overlaps(bb)) {
+            if (ballBox.overlaps(boundingBox)) {
                 if (!brick.isCollided()) {
                     handleCollision(ball, brick);
                     boolean destroyed = brick.onCollision();

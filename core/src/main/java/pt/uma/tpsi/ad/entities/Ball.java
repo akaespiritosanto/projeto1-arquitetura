@@ -59,7 +59,7 @@ public class Ball {
         float paddleMiddle = paddle.x + paddleThird;
         float paddleRight = paddle.x + 2 * paddleThird;
 
-                int ballCenterX = posX + animator.getWidth() / 2;
+        int ballCenterX = posX + animator.getWidth() / 2;
 
         if (ballCenterX >= paddleLeft && ballCenterX < paddleMiddle) {
             directionX = -1;
@@ -73,8 +73,6 @@ public class Ball {
         }
         directionY = 1;
     }
-
-
 
 
     public Rectangle getBoundingBox() {
